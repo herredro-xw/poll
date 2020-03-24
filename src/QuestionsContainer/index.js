@@ -9,6 +9,7 @@ let QuestionsContainer = (props) => {
   let [counter, setCounter] = useState(0);
   let questions = props.questions;
   let [questionsLeft, setQuestionsLeft] = useState(true);
+  let [nextAvailable, setNextAvailable] = useState(true);
   let [currentInstance, setCurrentInstance] = useState(questions[counter]);
   console.log('init state', counter, currentInstance);
 
