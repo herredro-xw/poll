@@ -15,7 +15,7 @@ let QuestionsContainer = (props) => {
   let nextQ = (info) => {
       if ((counter) < questions.length) {
         console.log('shifting state', counter, currentInstance);
-        setCounter(3);
+        setCounter(counter+1);
         setCurrentInstance(questions[counter]);
         console.log('shifted state', counter, currentInstance);
       } else {
@@ -24,7 +24,12 @@ let QuestionsContainer = (props) => {
         setCurrentInstance(false)
       }
   }
-
+  let start = (info) => {
+    console.log(info);
+    setCounter(0);
+    setQuestionsLeft(true);
+    setCurrentInstance(counter);
+  }
   let reset = (info) => {
     console.log(info);
     setCounter(0);
@@ -40,8 +45,10 @@ let QuestionsContainer = (props) => {
   let out_question = <Question instance={currentInstance.question}/>;
   let out_answer = <Answers instance={currentInstance.answers} />;
   let out_option = <Options
+    questionsLeft={questionsLeft}
     next={(info) => nextQ(info)}
-    reset={(info) => reset(info)}/>;
+    reset={(info) => reset(info)}
+    start={(info) => start(info)}/>;
 
   // Return
   if (props.questionsLeft){
