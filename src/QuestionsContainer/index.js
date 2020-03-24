@@ -19,10 +19,13 @@ let QuestionsContainer = (props) => {
   }
 
   let nextQ = (info) => {
+    // var checks = document.getElementsByClassName('checkbox');
+    // checks[0].checked = false;
     if (focus === 'lastQ') {
       setFocus('end')
     }
     else {setCounter(counter+1);}
+
   }
 
   let start = (info) => {
