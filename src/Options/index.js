@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from "react";
+import React from "react";
 
 let Options = (props) => {
 
@@ -10,24 +10,13 @@ let Options = (props) => {
   let ch_reset = (info) => {
     props.reset(info)
   }
-  if (props.questionsLeft){
-    return(
-      <div className="optionscontainer">
-        <button
-          onClick={() => ch_next('next')}>next(cb)</button>
-        <button
-          onClick={() => props.reset('reset')}>reset(cb)</button>
-      </div>
 
-    )
-  } else {
-    return (
-      <div className="optionscontainer">
-        <button
-          onClick={() => props.start('start')}>start(cb)</button>
-      </div>
-    )
-  }
+  return (
+    <div className="optionscontainer">
+      <button
+        onClick={() => props.cb('')}>{props.name}</button>
+    </div>
+  )
 }
 
 let Start = (props) => {
