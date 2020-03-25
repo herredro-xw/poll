@@ -33,9 +33,9 @@ export const CheckFormik = ({answer, id="checkbox", callback}) => (
       {({ values }) => (
 
           <label>
-            <Field type="checkbox" name="toggle" id={id} />
+            <Field type="checkbox" name={id} id={id} />
             {answer}
-            {`${values.toggle}`}
+            {` (${values.toggle})`}
 
           </label>
 

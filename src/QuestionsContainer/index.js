@@ -23,7 +23,10 @@ let QuestionsContainer = (props) => {
       setFocus('end')
     }
     else {setCounter(counter+1);}
+  }
 
+  let backQ = (info) => {
+    setCounter(counter-1);
   }
 
   let start = (info) => {
@@ -65,6 +68,10 @@ let QuestionsContainer = (props) => {
           <Options
             name="next"
             cb={(info) => nextQ(info)}
+          />
+          <Options
+            name="back"
+            cb={(info) => backQ(info)}
           />
           <Options
             name="reset"
