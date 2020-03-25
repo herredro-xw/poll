@@ -1,41 +1,17 @@
 [
-  {"question":"Question 1: FIRST",
-    "answers":{
-      "1":"q1a",
-      "2":"q1b",
-      "3":"q1c",
-      "4":"q1d"
-    }
+  {"question":"Question 1 (FIRST)",
+    "answers":["q1a","q1b","q1c","q1d"]
   },
-  {"question":"Question 2: aweadzdc",
-    "answers":{
-      "1":"q2a",
-      "2":"q2b",
-      "3":"q2c",
-      "4":"q2d"
-    }
+  {"question":"Question 2",
+    "answers":["q2a","q2b","q2c"]
   },
-  {"question":"Question 3: dshpro5",
-    "answers":{
-      "1":"q3a",
-      "2":"q3b",
-      "3":"q3c",
-      "4":"q3d"
-    }
+  {"question":"Question 3",
+    "answers":["q3a","q3b","q3c","q3d","q3e","q3f"]
   },
-  {"question":"Question 4: snipseop",
-    "answers":{
-      "1":"q4a",
-      "2":"q4b",
-      "3":"q4c",
-      "4":"q4d"
-    }
-  }, {"question":"Question 5: LAST",
-    "answers":{
-      "1":"q5a",
-      "2":"q5b",
-      "3":"q5c",
-      "4":"q5d"
-    }
+  {"question":"Question 4",
+    "answers":["q4a","q4b","q4c","q4d"]
+  },
+  {"question":"Question 5 (LAST)",
+    "answers":["q5a","q5b","q5c","q5d"]
   }
 ]

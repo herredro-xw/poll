@@ -1,14 +1,14 @@
 import React, { useState, useEffect }  from "react";
 
 import Question from './../Question'
-import Answers from './../Answers'
+import Answers, {AnswersDyn} from './../Answers'
 import Options from './../Options'
 
 let QuestionsContainer = (props) => {
 
   let [counter, setCounter] = useState(0);
   let questions = props.questions;
-  let [focus, setFocus] = useState('start'); // 'start', 'running', 'lastQ', 'end'
+  let [focus, setFocus] = useState('running'); // 'start', 'running', 'lastQ', 'end'
   let [currentInstance, setCurrentInstance] = useState(questions[counter]);
 
   let checkIfLast = () => {
@@ -19,8 +19,6 @@ let QuestionsContainer = (props) => {
   }
 
   let nextQ = (info) => {
-    // var checks = document.getElementsByClassName('checkbox');
-    // checks[0].checked = false;
     if (focus === 'lastQ') {
       setFocus('end')
     }
@@ -132,6 +130,7 @@ let QuestionsContainer = (props) => {
       {out_question}
       {out_answer}
       {out_option}
+
     </div>
 
   )
