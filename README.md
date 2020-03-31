@@ -15,8 +15,3 @@ It should become a React Component that displays Poll-Questions saved in a JSON.
 - `Answers` renders multiple `Checkbox` (`Elementary.js`) Components
 - `Options` renders the buttons "next", "back", "reset"
 **`QuestionContainer contains all the logic so far`**
-
-
-## Components
-- `Answers`
-- `Options` (being a sibling component of Answers (if that makes sense))
