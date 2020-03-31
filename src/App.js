@@ -2,12 +2,14 @@ import React  from "react";
 import QuestionsContainer from './QuestionsContainer'
 
 import './App.css';
-import './qs/questions.json';
+import './data/questions.json';
 
 function App() {
-  let quest = require('./qs/questions.json');
+  let quest = require('./data/questions.json');
+
+
   return (
-    <QuestionsContainer questions={quest} />
+    <QuestionsContainer data={quest} />
   );
 }
 

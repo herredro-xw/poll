@@ -7,18 +7,24 @@ import Options from './../Options'
 let QuestionsContainer = (props) => {
 
   let [counter, setCounter] = useState(0);
-  let questions = props.questions;
+  let questions = props.data;
   let [focus, setFocus] = useState('running'); // 'start', 'running', 'lastQ', 'end'
   let [currentInstance, setCurrentInstance] = useState(questions[counter]);
+  let [answers, setAnswers] = useState([]);
 
-  let checkIfLast = () => {
-    if ((counter+1) >= questions.length) {
-      console.log("checkIfLast: run out of questions");
-      setFocus('lastQ')
-    }
+  let updateAnswers = (answersArray) => {
+    console.log("updateAnswers, got: ", answersArray);
+    setAnswers(answersArray);
+  };
+
+  let start = (info) => {
+    console.log("QC.start():", info);
+    setCounter(0);
+    setFocus('running')
+    setCurrentInstance(questions[counter]);
   }
-
   let nextQ = (info) => {
+    // console.log("QC.nextQ():should update database with", answers);
     if (focus === 'lastQ') {
       setFocus('end')
     }
@@ -29,27 +35,25 @@ let QuestionsContainer = (props) => {
     setCounter(counter-1);
   }
 
-  let start = (info) => {
-    console.log(info);
-    setCounter(0);
-    setFocus('running')
-    setCurrentInstance(questions[counter]);
-  }
   let reset = (info) => {
-    console.log('reset');
+    console.log('QC: RESETING');
     setCounter(0);
     setCurrentInstance(questions[counter]);
     setFocus('start');
   }
 
-  let content =(
-    <div>
-      {/*  This is where the content is shown */}
-    </div>);
+  let checkIfLast = () => {
+    if ((counter+1) >= questions.length) {
+      setFocus('lastQ')
+  } }
+
 
   let out_option = null;
   let out_question = null;
-  let out_answer = null;
+  let out_answer =
+    <Answers
+      instance={currentInstance.answers}
+      updateChoices={(choices) => {updateAnswers(choices)}}/>;
 
   switch(focus){
     case 'start':
@@ -64,10 +68,12 @@ let QuestionsContainer = (props) => {
       break;
     case 'running':
       out_option = (
-        <div>
+        <div id="buttons">
           <Options
             name="next"
-            cb={(info) => nextQ(info)}
+            cb={(info) => {
+              nextQ(info);
+            }}
           />
           <Options
             name="back"
@@ -79,8 +85,9 @@ let QuestionsContainer = (props) => {
           />
         </div>
       )
-      out_question = (<div><Question instance={currentInstance.question}/></div>)
-      out_answer = (<div><Answers instance={currentInstance.answers} /></div>)
+      out_question = (<div>
+        <Question
+          instance={currentInstance.question}/></div>)
       break;
     case 'lastQ':
       out_option = (
@@ -95,8 +102,9 @@ let QuestionsContainer = (props) => {
           />
         </div>
       )
-      out_question = (<div><Question instance={currentInstance.question}/></div>)
-      out_answer = (<div><Answers instance={currentInstance.answers} /></div>)
+      out_question = (<div>
+        <Question
+          instance={currentInstance.question}/></div>)
       break;
     case 'end':
       out_option = (
@@ -109,23 +117,20 @@ let QuestionsContainer = (props) => {
       )
       break;
     default:
-      content = <div>None of the cases holded. @dev: Please Check</div>
+      out_question = <div>None of the cases holded. @dev: Please Check</div>
       break;
   }
 
-
-
-
   useEffect(()=>{
-    console.log("new state: ", focus);
-  }, [focus]);
-
-  useEffect(()=>{
-    console.log("new counter: ", counter);
+    // console.log("new counter: ", counter);
   }, [counter]);
 
+  useEffect(()=>{
+    // console.log("Effect: answers updated! ", answers);
+  }, [answers]);
+
   useEffect(() => {
-    console.log('updating instance');
+    // console.log('updating instance...');
     setCurrentInstance(questions[counter]);
     checkIfLast();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -133,16 +138,16 @@ let QuestionsContainer = (props) => {
 
   return(
     // Lyrics button gets the toggle function to "setState" of lyrics.
-    <div>
-      {out_question}
-      {out_answer}
-      {out_option}
 
-    </div>
+      <div
+        // onSubmit={}
+      >
+        {out_question}
+        {out_answer}
+        {out_option}
+      </div>
 
   )
-
 }
-
 
 export default QuestionsContainer;
