@@ -12,40 +12,56 @@ let QuestionsContainer = (props) => {
   let [currentInstance, setCurrentInstance] = useState(questions[counter]);
   let [answers, setAnswers] = useState([]);
 
+// LOGIC
   let updateAnswers = (answersArray) => {
     console.log("updateAnswers, got: ", answersArray);
     setAnswers(answersArray);
   };
+  let checkIfLast = () => {
+    if ((counter+1) >= questions.length) {
+      setFocus('lastQ')
+  } }
 
+// LOGIC BUTTONS
   let start = (info) => {
     console.log("QC.start():", info);
     setCounter(0);
     setFocus('running')
     setCurrentInstance(questions[counter]);
-  }
+  };
   let nextQ = (info) => {
     // console.log("QC.nextQ():should update database with", answers);
     if (focus === 'lastQ') {
       setFocus('end')
     }
     else {setCounter(counter+1);}
-  }
-
+  };
   let backQ = (info) => {
     setCounter(counter-1);
-  }
-
+  };
   let reset = (info) => {
     console.log('QC: RESETING');
     setCounter(0);
     setCurrentInstance(questions[counter]);
     setFocus('start');
   }
+// EFFECTS
+  useEffect(()=>{
+    // console.log("new counter: ", counter);
+  }, [counter]);
 
-  let checkIfLast = () => {
-    if ((counter+1) >= questions.length) {
-      setFocus('lastQ')
-  } }
+  useEffect(()=>{
+    // console.log("Effect: answers updated! ", answers);
+  }, [answers]);
+
+  useEffect(() => {
+    // console.log('updating instance...');
+    setCurrentInstance(questions[counter]);
+    checkIfLast();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [counter])
+
+
 
 
   let out_option = null;
@@ -121,20 +137,7 @@ let QuestionsContainer = (props) => {
       break;
   }
 
-  useEffect(()=>{
-    // console.log("new counter: ", counter);
-  }, [counter]);
 
-  useEffect(()=>{
-    // console.log("Effect: answers updated! ", answers);
-  }, [answers]);
-
-  useEffect(() => {
-    // console.log('updating instance...');
-    setCurrentInstance(questions[counter]);
-    checkIfLast();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counter])
 
   return(
     // Lyrics button gets the toggle function to "setState" of lyrics.

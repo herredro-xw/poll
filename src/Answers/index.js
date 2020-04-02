@@ -14,7 +14,7 @@ let AnswersContainer = (props) => {
          ...options,
          [option]: false
    }),{})});
-   console.log("AC:xxsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+   console.log("AC:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
 
   let createCheckboxes = () => answers.map(createCheckbox);
@@ -48,23 +48,10 @@ let AnswersContainer = (props) => {
   };
 
 
-  // ( prevState => ({ checkboxes: {...prevState.checkboxes,[name]: !prevState.checkboxes[name]}}));
-
-
   useEffect(() => {
     cb(state.checkboxes);
   }, [state]);
 
-  // let handleFormSubmit = formSubmitEvent => {
-  //   formSubmitEvent.preventDefault();
-  //   let outcome = []
-  //   Object.keys(state.checkboxes)
-  //     .filter(checkbox => state.checkboxes[checkbox])
-  //     .forEach(checkbox => {
-  //       outcome.push(checkbox, state.checkboxes[checkbox]);
-  //
-  //     });
-  // };
 
   return(
     // Lyrics button gets the toggle function to "setState" of lyrics.
@@ -76,65 +63,6 @@ let AnswersContainer = (props) => {
       </form>
     </div>
   )
-}
-
-
-class AnswersContainerC extends React.Component {
-  constructor(props) {
-    super();
-    this.answers = props.instance;
-    this.cb = props.updateChoices;
-    this.state = {
-       checkboxes: this.answers.reduce(
-         (options, option) => ({
-           ...options,
-           [option]: false
-     }),{})};
-     // console.log("stateAFTERConstr",this.state);
-     console.log("AC:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-  }
-
-
-  createCheckboxes = () => this.answers.map(this.createCheckbox);
-  createCheckbox = option => (
-    <CheckboxGit
-      label={option}
-      isSelected={this.state.checkboxes[option]}
-      onCheckboxChange={this.handleCheckboxChange}
-      key={option} />);
-
-  handleCheckboxChange = (changeEvent) => {
-    const name = changeEvent.target.name;
-    console.log("stateBeforeHandle", this.state.checkboxes);
-    this.state.checkboxes[name] = !this.state.checkboxes[name]
-    console.log("stateAfterHandle", this.state.checkboxes);
-  };
-
-  render() {
-    let createCheckboxes = () => this.answers.map(this.createCheckbox);
-    let createCheckbox = option => (
-      <CheckboxGit
-        label={option}
-        isSelected={this.state.checkboxes[option]}
-        onCheckboxChange={this.handleCheckboxChange}
-        key={option} />);
-
-    let handleCheckboxChange = (changeEvent) => {
-      const name = changeEvent.target.name;
-      console.log("stateBeforeHandle", this.state.checkboxes);
-      this.state.checkboxes[name] = !this.state.checkboxes[name]
-      console.log("stateAfterHandle", this.state.checkboxes);
-    };
-    return (
-      <div className="answers">
-        <form
-          // onSubmit={handleFormSubmit}
-          >
-          {createCheckboxes()}
-        </form>
-      </div>
-    );
-  }
 }
 
 
